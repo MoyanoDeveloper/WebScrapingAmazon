@@ -27,5 +27,19 @@ if response.status_code == 200:
 
     # Imprimir el HTML (opcional)
     print(soup.prettify())
+    
+    enlaces = soup.find_all('a', class_='a-link-normal s-underline-text s-underline-link-text s-link-style a-text-normal')
+
+# Imprimir los resultados encontrados
+    for enlace in enlaces:
+        texto_enlace = enlace.get_text()  # Obtener el texto del enlace
+        href_enlace = enlace['href']       # Obtener el href del enlace
+    
+    # Crear el enlace completo
+        enlace_completo = f"https://www.amazon.com{href_enlace}"
+    
+    # Imprimir el texto y el enlace completo
+        print(texto_enlace, enlace_completo)
+    
 else:
     print(f"Error al acceder a la página, código de estado: {response.status_code}")
